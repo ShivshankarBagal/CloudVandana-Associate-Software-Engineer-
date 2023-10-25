@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extended Form</title>
+    <style>
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+         
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="tel"], input[type="email"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        #submit, #reset {
+            display: inline-block;
+            padding: 10px;
+            background-color:blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            
+        }
+        #reset {
+            background-color: #f42011;
+            margin-left: 10px;
+        }
+        #extendedForm{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>survey form</h2>
+        <form id="extendedForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName"  placeholder="firstName" required >
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="lastName"  required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="">Select a Country</option>
+                <option value="INDIA">INDIA</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="UK">UK</option>
+            </select>
+
+            <label for="gender">Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            Male
+            <input type="radio" id="female" name="gender" value="Female" required>
+            Female
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required placeholder="mobile number">
+
+            <label for="profession">Profession:</label>
+            <input type="text" id="profession" name="profession" placeholder="profession" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="email" required>
+
+         
+            <div style="text-align: center;">
+                <button type="button" id="submit">Submit</button>
+                <button type="button" id="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("extendedForm");
+        const submitButton = document.getElementById("submit");
+        const resetButton = document.getElementById("reset");
+
+        submitButton.addEventListener("click", () => {
+            const firstName = document.getElementById("firstName");
+            const lastName = document.getElementById("lastName");
+            const dob = document.getElementById("dob");
+            const country = document.getElementById("country");
+            const genderMale = document.getElementById("male");
+            const genderFemale = document.getElementById("female");
+            const mobile = document.getElementById("mobile");
+            const profession = document.getElementById("profession");
+            const email = document.getElementById("email");
+
+            if (firstName.value.trim() === '') {
+                alert("First Name is required.");
+            } else if (lastName.value.trim() === '') {
+                alert("Last Name is required.");
+            } else if (dob.value.trim() === '') {
+                alert("Date of Birth is required.");
+            } else if (country.value === '') {
+                alert("Country is required.");
+            } else if (!genderMale.checked && !genderFemale.checked) {
+                alert("Gender is required.");
+            } else if (mobile.value.trim() === '' || !/^\d{10}$/.test(mobile.value.trim())) {
+                alert("Please enter a valid 10-digit mobile number.");
+            } else if (profession.value.trim() === '') {
+                alert("Profession is required.");
+            } else if (email.value.trim() === '') {
+                alert("Email is required.");
+            } else {
+                alert("Form submitted successfully.");
+            }
+        });
+
+        resetButton.addEventListener("click", () => {
+            // Clear the form fields directly
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("dob").value = "";
+            document.getElementById("country").value = "";
+            document.getElementById("male").checked = false;
+            document.getElementById("female").checked = false;
+            document.getElementById("mobile").value = "";
+            document.getElementById("profession").value = "";
+            document.getElementById("email").value = "";
+        });
+    </script>
+</body>
+</html>
